@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<script>  var birds= {{birds|tojson }} </script>
+<script>  var first= {{first}} </script>
+<script>  var second= {{second}} </script>
+
+
+
+
+<script src="{{ url_for('static', filename='Learning/compare.js') }}"></script>
+
+
+<div class="row">
+    <div class="col-sm-6">
+
+
+        <select class="form-select form-select-lg mb-3" name="bird" id="bird1">
+            {% for key in birds.keys() %}
+            {% set bird = birds[key] %}
+
+            {% if bird.id == first %}
+            <option value="{{ bird.id }}" selected>{{ bird.name }}</option>
+            {% else %}
+            <option value="{{ bird.id }}">{{ bird.name }}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <div class = "bird_card_compare">
+      <br>  <span class = "call_sound_compare"> "{{ birds[first].call.sound }}"</span> <br>
+        <img src = "{{ url_for('static', filename=birds[first].imageUrl) }}" class = "compare_image"><br>
+        <a id = "listen_first" class="btn btn-secondary-color">Play Sound</a> <br>
+        <audio id="audio_first" src= "{{ url_for('static', filename=birds[first].soundUrl) }}" ></audio>
+
+            <b>{{birds[first].description}}</b><br>
+            <span class="grey-text">Type</span>
+        {% for callType in birds[first].call.type %}
+        {{ callType }}
+        {% endfor %}
+        <br>
+            <span class="grey-text"> Pattern</span>
+        {% for callPattern in birds[first].call.pattern %}
+        {{ callPattern }}
+
+        {% endfor %}
+            </div>
+
+
+
+
+    </div>
+    <div class="col-sm-6">
+
+        <select class="form-select form-select-lg mb-3" name="bird" id="bird2">
+            {% for key in birds.keys() %}
+            {% set bird = birds[key] %}
+            {% if bird.id == second %}
+            <option value="{{ bird.id }}" selected>{{ bird.name }}</option>
+            {% else %}
+            <option value="{{ bird.id }}">{{ bird.name }}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+
+
+        <div class = "bird_card_compare">
+        <br> <span class = "call_sound_compare">"{{ birds[second].call.sound }}"</span> <br>
+        <img src = "{{ url_for('static', filename=birds[second].imageUrl) }}" class = "compare_image"><br>
+        <a id = "listen_second" class="btn btn-secondary-color">Play Sound</a> <br>
+        <audio id="audio_second" src= "{{ url_for('static', filename=birds[second].soundUrl) }}" ></audio>
+
+
+            <b>{{birds[second].description}}</b><br>
+       <span class="grey-text"> Type </span>
+        {% for callType in birds[second].call.type %}
+        {{ callType }}
+        {% endfor %}
+        <br>
+            <span class="grey-text"> Pattern </span>
+        {% for callPattern in birds[second].call.pattern %}
+        {{ callPattern }}
+
+        {% endfor %}
+            </div>
+
+    </div>
+    <div class="col-sm-6">
+        <a id = "list_button" class="previous"> Back  </a>
+    </div>
+    <div class="col-sm-6">
+        <a id = "quiz_button" class="next"> Take the quiz </a>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+

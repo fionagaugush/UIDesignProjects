@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+    <script src="{{ url_for('static', filename='Quiz/multiple_choice.js') }}"></script>
+    <script>
+        let score = {{score}};
+        let total_num_questions = {{total_num_questions}};
+    </script>
+    <style>
+        .image-container-fail {
+            position: relative;
+            text-align: center;
+        }
+
+        .image-container-fail img {
+            width: 450px;
+            height: auto;
+        }
+
+        .image-container {
+            position: relative;
+            text-align: center;
+        }
+
+        .image-container img {
+            width: 500px;
+            height: auto;
+        }
+
+        .image-container .btn-container {
+            position: absolute;
+            top: 117%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .quiz-btn {
+            border-radius: 1.5rem;
+            padding: .5rem 1rem;
+            font-size: 1.5rem;
+            border-color: #0879bf;
+            color: #fff;
+            background-color: #0879bf;
+        }
+
+        .quiz-btn:hover {
+            color: #fff;
+        }
+
+        .black-bold-text {
+            color: #000000;
+        }
+
+        .quiz-data {
+            margin-top: 1rem;
+        }
+        .bird-sub-title {
+            color: grey;
+        }
+        .my-btn {
+            background-color: #0879bf!important;
+        }
+    </style>
+</head>
+<div class="row">
+    <div>
+        {% if score/total_num_questions >= 0.8 %}
+        <div class="image-container">
+            <img alt="Congratulations Image" src="{{ url_for('static', filename='bird-quiz-congrats.png') }}">
+        </div>
+        {% else %}
+        <div class="image-container-fail">
+            <img alt="Try Again Image" src="{{ url_for('static', filename='bird-quiz-fail.png') }}">
+        </div>
+        {% endif %}
+    </div>
+    <div class="quiz-data col-md-12 center">
+        <p class="bird-sub-title">You scored <span
+                class="black-bold-text">{{ score }} out of {{ total_num_questions }}</span> questions correct.</p>
+        <p class="bird-sub-title">{% if score/total_num_questions >= 0.8 %}<span class="black-bold-text">Congratulations!</span>
+            You passed the quiz!{% else %}Sorry, you did not pass the quiz. <span class="black-bold-text">Try again, you’ll get it next time!</span>{%
+            endif %}</p>
+        <div class="margin-top-2">
+            <a href="{{ url_for('learn') }}" class="btn btn-primary my-btn margin-right-1">Go back to learning</a>
+            <a href="{{ url_for('quiz') }}" class="btn btn-secondary">Return to Quiz</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

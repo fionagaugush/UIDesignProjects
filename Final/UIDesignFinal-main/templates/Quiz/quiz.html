@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+    <script src="{{ url_for('static', filename='Quiz/quiz.js') }}"></script>
+    <script>
+         let current_question = {{ current_question }};
+    </script>
+    <style>
+        .image-container {
+            position: relative;
+            text-align: center;
+        }
+        .image-container img {
+            width: 500px;
+            height: auto;
+        }
+        .image-container .btn-container {
+            position: absolute;
+            top: 117%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .quiz-btn {
+            border-radius: 1.5rem;
+            padding: .5rem 1rem;
+            font-size: 1.5rem;
+            border-color: #0879bf;
+            color: #fff;
+            background-color: #0879bf;
+        }
+        .quiz-btn:hover {
+            color: #fff;
+        }
+        .black-bold-text {
+            color: #000000;
+        }
+        .margin-right-1 {
+            margin-right: 1rem;
+        }
+    </style>
+</head>
+<div class="row">
+    <div class="col-md-12 center">
+        <div class="image-container">
+            <img alt="Bird Image" src="{{ url_for('static', filename='bird-quiz.png') }}">
+            <div class="btn-container">
+
+                <div class="quiz-title-header">
+                    <p class="quiz-sub-title">To successfully pass the quiz, you’ll need to <span class="black-bold-text">answer correctly at least 80%</span> of the questions. Good luck!</p>
+                </div>
+                <button class="btn quiz-btn" id="start-quiz-button">Start Quiz</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

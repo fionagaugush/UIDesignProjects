@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script>  var birds= {{birds|tojson }} </script>
+<script>  var id= {{id}} </script>
+
+<script src="{{ url_for('static', filename='Learning/info.js') }}"></script>
+
+<div class ="row">
+        <div class="col-sm-6">
+<h1>{{birds[id].name}}</h1>
+
+<div class = "call_sound_compare"> "{{ birds[id].call.sound }}"</div> <br>
+
+<div id = "listen_more" class="btn btn-secondary-color margin-bottom-1">Play Sound</div>
+
+<audio id="audio_more" src= "{{ url_for('static', filename=birds[id].soundUrl) }}" ></audio>
+
+<br><b>{{birds[id].description}}</b><br>
+<div id="calls">
+
+        <span class = "grey-text">Type</span>
+        {% for callType in birds[id].call.type %}
+        {{ callType }}
+        {% endfor %}
+        <br>
+        <span class = "grey-text"> Pattern</span>
+        {% for callPattern in birds[id].call.pattern %}
+         {{ callPattern }}
+        {% endfor %}
+
+
+
+        </div>
+        </div>
+        <div class ="info_image_cont col-sm-6">
+                <img src = "{{ url_for('static', filename=birds[id].imageUrl) }}" class = "info_image"><br>
+            <br>
+
+
+        </div>
+    <div class = "row">
+        <div class = "col-sm-6"> </div>
+
+        <div class = "col-sm-6">
+            <div class = "location">
+                <span class = "grey-text "> Found in </span>
+                {% for spotting in birds[id].spottingLocations %}
+                {{ spotting }}
+                <br>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+<div class = "row">
+<div class="col-sm-6">
+        <a id = "list_button" class="previous"> Back  </a>
+</div>
+<div class="col-sm-6">
+        <a id = "compare_button" class="next">Go to side by side comparisons </a>
+</div>
+</div>
+
+
+{% endblock %}
+
+

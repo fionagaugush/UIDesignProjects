@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+    <script src="{{ url_for('static', filename='Quiz/mapping.js') }}"></script>
+    <script>
+        let question={{ question|tojson }};
+        let question_number = {{ question_number }};
+        let score = {{ score }};
+        let total_num_questions = {{ total_num_questions }};
+        let birds_list = {{ birds_list|tojson }};
+    </script>
+</head>
+<div class="row quiz-card">
+    <div class="question-quiz-progress">
+        <div class="d-flex justify-content-between align-items-center">
+            {% for i in range(total_num_questions) %}
+            {% if not loop.first %}
+            <div class="step-line {{ 'done' if i <= question_number-1 }}"></div>
+            {% endif %}
+            <div class="step {{ 'done' if i < question_number }}">
+                {{ i+1 }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md-12 question">
+        <div class="question-text">
+            <!--            <span class="question-number">Question {{question_number}}</span> -->
+            {{question.questionText}}</h1>
+        </div>
+        <div id="question-audio">
+        </div>
+
+        <div class="row">
+            <div class="col-md-9">
+                <div id="choices-container">          
+                    <div id="drag-drop-table">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h3 id="score">
+                    Score: <span id="score-value"> {{score}}</span>
+                </h3>
+                <div id="feedback">
+                </div>
+            </div>
+        </div>
+        <div id="error-message" class="alert-danger"></div>
+        <div id="submit-button" class="btn btn-primary btn-primary-color">Submit</div>
+        <div id="next-question-button" class="btn btn-primary btn-primary-color"></div>
+    </div>
+</div>
+
+{% endblock %}

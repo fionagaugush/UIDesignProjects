@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<script>  var birds= {{birds|tojson }} </script>
+<div class="row">
+    {% for key in birds.keys() %}
+    {% set bird = birds[key] %}
+    <div class="col-sm-3">
+        <div class="card">
+            <img src="{{ url_for('static', filename=bird.imageUrl) }}" class="card-img-top" alt="{{ bird.name }}"
+            >
+            <div class="card-body">
+                <h5 class="card-title">{{ bird.name }}</h5>
+
+                <p class="grey-text ">{{ bird.description }}</p>
+
+                <div class="space-in-bet">
+                    <div>
+                        <a id = "listen{{bird.id}}" class="btn btn-secondary-color">Play Sound</a>
+
+                        <audio id="audio{{bird.id}}" src="{{ url_for('static', filename=bird.soundUrl) }}"></audio>
+                    </div>
+
+                    <div>
+                        <a id = "more{{bird.id}}" class="btn btn-outline-secondary">Learn More</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="col-sm-6">
+        <a id = "home_button" class="previous"> Go Home</a>
+    </div>
+    <div class="col-sm-6">
+        <a id = "compare_button" class="next">Go to side by side comparisons </a>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='Learning/birdsList.js') }}"></script>
+{% endblock %}

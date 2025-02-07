@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script>
+    $("#home_nav").removeClass("active")
+  $("#quiz_nav").removeClass("active")
+   $("#learn_nav").addClass("active")
+</script>
+<script>  var query= {{query|tojson }} </script>
+<script>  var results= {{results|tojson }} </script>
+Birds Containing : "{{query}}" <br>
+{% for result in results %}
+<a href = "/learn/{{result.id}}">{{result.name}} </a> <br>
+{% endfor %}
+{% endblock %}

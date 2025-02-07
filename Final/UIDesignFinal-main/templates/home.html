@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+    <script src="{{ url_for('static', filename='home.js') }}"></script>
+    <style>
+        .bird-main-title {
+            display: flex;
+            flex-direction: column;
+            margin: 30px 0 10px 0;
+            justify-content: center;
+            align-items: center;
+            /*color: #2abbad;*/
+        }
+        .bird-main-title-h1 {
+            color: #0876ba;
+        }
+        .bird-sub-title {
+            color: grey;
+        }
+        .image-container {
+            position: relative;
+            text-align: center;
+        }
+        .image-container img {
+            width: 600px;
+            height: auto;
+        }
+        .image-container .btn-container {
+            position: absolute;
+            top: 77%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<div class="row">
+    <div class="bird-main-title">
+        <h1 class="bird-main-title-h1"> Bird Sounds of Central Park</h1>
+        <p class="bird-sub-title">Dive into the fascinating world of birds and their unique sounds.</p>
+    </div>
+    <div class="image-container">
+        <img alt="Bird Image" src="{{ url_for('static', filename='bird-cover1.png') }}">
+        <div class="btn-container">
+            <button class="btn bird-btn-learn" id="start-learning">Start learning</button>
+            <button class="btn bird-btn-quiz" id="quiz">Take a quiz</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
