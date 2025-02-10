@@ -1,0 +1,164 @@
+{% extends "layout.html" %}
+
+
+
+
+{% block content %}
+
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src = "/static/entry.js"> </script>
+
+<script>  var data= {{data|tojson }} </script>
+<script>  var id= {{id|tojson }} </script>
+
+
+<style>
+ body{
+        background-color:#F0F4EF;
+
+        }
+.boxes{
+text-align:center;
+margin-bottom:20px;
+
+}
+
+.entry_title{
+margin-bottom:20px;
+font-weight:bold;
+}
+#message{
+text-align:center;
+height: 100px;
+margin:20 px;
+}
+.error{
+border-color:red;
+color:red;
+}
+h2{
+text-align:center;
+background-color: #BFCC94;
+
+}
+#add_performer{
+text-align:center;
+background-color:#344966;
+color:white;
+font-weight:bold;
+width: 500px;
+height:70px;
+font-size:40px;
+    display: inline-block;
+
+}
+#space{
+width: 500px;
+height:70px;
+}
+.center{
+
+text-align:center;
+}
+.right{
+
+text-align:left;
+margin-left:20%;
+}
+.left{
+
+text-align:left;
+margin-left:40%;
+}
+
+.genres{
+margin-left:25%;
+font-weight:bold;
+}
+.name{
+
+text-align:left;
+margin-left: 20%;
+font-weight:bold;
+
+}
+.new
+{
+text-align:center;
+background-color:#344966;
+color:white;
+font-weight:bold;
+padding:10px;
+font-size:20px;
+
+}
+.grey{
+color:grey;
+}
+</style>
+<div id="message">
+
+</div>
+<div>
+    <h1>Please submit an entry to our database.</h1>
+</div>
+
+
+<h2>Information about the artist:</h2><br>
+    <span class = "name">Name</span>
+    <br>
+<div class = "right">
+<input type= "text" id="add_name" class="boxes" placeholder="ex: Beyonce" maxlength="45" size="45">
+</div>
+<span class= "name"> Genres</span> <span class="grey">separate each entry with a , </span>
+<div class = "right">
+    <input type= "text" id="add_genre"class="boxes" placeholder="ex: Pop, Country" maxlength="75" size="75">
+</div>
+    <br>
+
+    <span class = "name">Top Songs </span><span class="grey"> separate each entry with a , </span><br>
+<div class = "right">
+<input type= "text" id="add_songs"class="boxes" placeholder="ex: Partition, Alien Superstar"maxlength="125" size="125">
+</div>
+<span class = "name">Add an Image</span><br>
+<div class = "right">
+<input type= "text" id="add_image" class="boxes" placeholder="please add a link"  size="125"><br>
+</div>
+<span class = "name">Add alt text </span>
+<div class = "right">
+<input type="text" id="add_alt" class ="boxes" placeholder="Write a brief description of the photo" size="125">
+</div>
+<span class = "name">Add a bio</span>
+<div class = "right">
+<textarea id="add_bio"class="bigboxes" placeholder="add a bio" rows="4" cols="125"></textarea>
+</div>
+
+<h2>Information about the performance:</h2><br>
+
+<span class = "name">Associated Department</span> <span class = "name">Year of Performance</span><br>
+<br>
+<span class = "right">
+<input type= "text" id="add_department" class="boxes" placeholder="ex: American" maxlength="20" size="20">
+</span>
+<span class = "right">
+    <input type= "text" id="add_year"class="boxes" placeholder="ex: 2025" maxlength="10" size="10"><br>
+</span>
+<span class = "name">Artifacts of Performance</span>
+<div class = "right">
+<input type= "text" id="add_performance"class="boxes" placeholder="please add a link (optional)" size="125">
+</div>
+<span class = "name">Notes on Performance</span>
+<div class = "right">
+    <textarea id="add_notes"class="bigboxes" placeholder="add notes (optional)" rows="4" cols="125"></textarea>
+</div>
+
+
+<br>
+
+<button  class = "right" id="add_performer" type="submit">SUBMIT</button>
+<span id = "error_message" class = "error"></span><br>
+
+{% endblock %}

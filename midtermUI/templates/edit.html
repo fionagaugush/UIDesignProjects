@@ -1,0 +1,30 @@
+
+{% block content %}
+
+{% include 'entry.html' %}
+<script src = "/static/edit.js"> </script>
+<style>
+    #discard{
+    display: inline-block;
+text-align: right;
+background-color:#AA2704;
+color:white;
+font-weight:bold;
+
+
+
+    }
+</style>
+
+<dialog id = "dialog">
+
+    <p>Are you sure you would like to discard your changes </p>
+    <button autofocus id = "yes">Yes</button>
+    <button autofocus id = "no">No</button>
+</dialog>
+
+
+<button  id="discard" type="submit">DISCARD CHANGES</button>
+
+
+{% endblock %}
